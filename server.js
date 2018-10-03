@@ -1,10 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // Load Routes
 const users = require('./routes/api/users');
 
 const app = express();
+
+// Express body-parser Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // DB Config
 const db = require('./config/keys').mongoURI;
@@ -18,7 +23,13 @@ mongoose
     .then(() => console.log('mongodb connected'))
     .catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send('hello world'));
+mongoose.set('useFindAndModify', false);
+
+// Passport Middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Use Routes
 app.use('/api/users', users);
