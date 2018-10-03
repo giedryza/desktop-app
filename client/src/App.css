@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Muli', sans-serif;
+}
+h1 {
+    padding: 1rem;
+    text-align: center;
+}
+.container {
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+.container-content {
+    max-width: 650px;
+    padding: 0 0.5rem;
+    margin: auto;
+}
+.spacer {
+    flex: 1;
+}
+
+/* NavBar */
+
+nav {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+}
+nav li {
+    padding: 1rem;
+}
+nav a {
+    text-decoration: none;
+    color: #000;
+}
+nav a:hover {
+    color: #aaa;
+}
+
+/* Dashboard */
+
+.dashboard {
+    padding: 1rem 0;
+}
+
+/* TvSeries */
+
+.tvseries {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem;
+    margin-top: 1rem;
+}
+.poster img {
+    display: block;
+    width: 100%;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+}
+.content p {
+    margin-top: 0.5rem;
+}
+.content span {
+    color: #aaa;
+}
+.content a {
+    text-decoration: none;
+    color: #000;
+}
+.content a:hover {
+    text-decoration: underline;
+}
+.button {
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    background: #eee;
+    margin-top: 4px;
+}
+.button:hover {
+    background: #ddd;
+}
+
+/* Form */
+
+form {
+    margin: 1.5rem 0;
+}
+form input {
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.invalid-input {
+    border: 1px solid #ff0000;
+}
+
+.invalid-error {
+    color: #ff0000;
+    font-size: 75%;
+    margin-top: -0.25rem;
+    margin-bottom: 1rem;
+}

@@ -35,29 +35,12 @@ router.post(
     '/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        // Get fields
-        const profileFields = {};
-    }
-);
-
-router.post(
-    '/',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
         Profile.findOne({ user: req.user.id }).then(profile => {
-            // Check if handle exists
-            Profile.findOne({ handle: profileFields.handle }).then(profile => {
-                if (profile) {
-                    errors.handle = 'Handle already exists';
-                    return res.status(400).json(errors);
-                }
-
-                // Save Profile
-                new Profile(profile)
-                    .save()
-                    .then(profile => res.json(profile))
-                    .catch(err => res.status(404).json(err));
-            });
+            // Save Profile
+            new Profile(profile)
+                .save()
+                .then(profile => res.json(profile))
+                .catch(err => res.status(404).json(err));
         });
     }
 );

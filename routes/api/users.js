@@ -13,20 +13,20 @@ const validateTvseriesInput = require('../../validation/tvseries');
 // Load User Model
 const User = require('../../models/User');
 
-// @route   GET api/users/register
+// @route   POST api/users/register
 // @desc    Register User
 // @access  Public
 router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
 
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
             errors.email = 'Email exists';
             return res.status(400).json(errors);
         } else {
+            if (!isValid) {
+                return res.status(400).json(errors);
+            }
             const newUser = new User({
                 email: req.body.email,
                 password: req.body.password
@@ -71,7 +71,11 @@ router.post('/login', (req, res) => {
             .then(isMatch => {
                 if (isMatch) {
                     // User Matched
-                    const payload = { id: user.id };
+                    const payload = {
+                        id: user.id,
+                        email: user.email,
+                        tvseries: user.tvseries
+                    };
 
                     // Sign Token
                     jwt.sign(
