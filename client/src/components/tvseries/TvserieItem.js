@@ -45,24 +45,24 @@ class TvserieItem extends Component {
                             {imdb.Title}
                         </a>
                     </h3>
-                    <p>
+                    <div>
                         {imdb.Year} <span>|</span> {imdb.Genre} <span>|</span>{' '}
                         Seasons: {imdb.totalSeasons}
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <i className="far fa-star" />{' '}
                         <strong>{imdb.imdbRating}</strong> <span>|</span>{' '}
                         {imdb.imdbVotes}
-                    </p>
-                    <p>{imdb.Plot}</p>
+                    </div>
+                    <div>{imdb.Plot}</div>
                     <div className="spacer" />
-                    <p>
+                    <div>
                         <Button
                             type="button"
                             value="Delete"
                             onClick={this.onDeleteClick.bind(this, tvserie._id)}
                         />
-                    </p>
+                    </div>
                 </div>
             </div>
         );

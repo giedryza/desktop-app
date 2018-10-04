@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
+import clearErrors from '../../utils/clearErrors';
 
 class Register extends Component {
     state = {
@@ -11,6 +12,10 @@ class Register extends Component {
         password: '',
         password2: ''
     };
+
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -80,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { registerUser }
+    { registerUser, clearErrors }
 )(withRouter(Register));

@@ -4,12 +4,17 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
+import clearErrors from '../../utils/clearErrors';
 
 class Login extends Component {
     state = {
         email: '',
         password: ''
     };
+
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -69,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loginUser }
+    { loginUser, clearErrors }
 )(withRouter(Login));
