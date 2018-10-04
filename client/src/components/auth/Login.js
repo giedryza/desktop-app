@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
+import Button from '../common/Button';
 
 class Login extends Component {
     state = {
@@ -54,7 +55,7 @@ class Login extends Component {
                         error={errors.password}
                     />
 
-                    <input className="button" type="submit" value="Login" />
+                    <Button type="submit" value="Login" />
                 </form>
             </div>
         );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteTvserie } from '../../actions/tvseriesActions';
+import Button from '../common/Button';
 
 class TvserieItem extends Component {
     state = {
@@ -56,13 +57,11 @@ class TvserieItem extends Component {
                     <p>{imdb.Plot}</p>
                     <div className="spacer" />
                     <p>
-                        <button
+                        <Button
                             type="button"
-                            className="button"
+                            value="Delete"
                             onClick={this.onDeleteClick.bind(this, tvserie._id)}
-                        >
-                            Delete
-                        </button>
+                        />
                     </p>
                 </div>
             </div>

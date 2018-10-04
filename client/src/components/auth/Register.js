@@ -3,20 +3,14 @@ import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
+import Button from '../common/Button';
 
 class Register extends Component {
     state = {
         email: '',
         password: '',
-        password2: '',
-        errors: {}
+        password2: ''
     };
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.errors !== this.props.errors) {
-            this.setState({ errors: this.props.errors });
-        }
-    }
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -39,7 +33,7 @@ class Register extends Component {
             return <Redirect to="/" />;
         }
 
-        const { errors } = this.state;
+        const { errors } = this.props;
 
         return (
             <div>
@@ -72,7 +66,7 @@ class Register extends Component {
                         error={errors.password2}
                     />
 
-                    <input className="button" type="submit" value="Register" />
+                    <Button type="submit" value="Register" />
                 </form>
             </div>
         );

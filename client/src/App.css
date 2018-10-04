@@ -47,6 +47,7 @@ footer {
 .nav-foot a {
     text-decoration: none;
     color: #000;
+    transition: 0.2s ease-in-out;
 }
 .nav-foot a:hover {
     color: #aaa;
@@ -103,6 +104,7 @@ form input {
     padding: 0.5rem 1.5rem;
     background: #eee;
     margin-top: 4px;
+    transition: 0.2s ease-in-out;
 }
 .button:hover {
     background: #ddd;
@@ -115,4 +117,9 @@ form input {
     font-size: 75%;
     margin-top: -0.25rem;
     margin-bottom: 1rem;
+}
+.imdb-info {
+    border: 1px solid #ff0000;
+    padding: 0.25rem;
+    margin: 0.25rem;
 }

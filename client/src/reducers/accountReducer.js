@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     tvseries: [],
-    tvserie: {},
     loading: false
 };
 

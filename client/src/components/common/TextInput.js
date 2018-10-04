@@ -1,16 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const TextInput = ({
-    name,
-    type,
-    value,
-    placeholder,
-    error,
-    info,
-    onChange,
-    disabled
-}) => {
+const TextInput = ({ name, type, value, placeholder, error, onChange }) => {
     return (
         <div>
             <input
@@ -22,9 +13,7 @@ const TextInput = ({
                 name={name}
                 value={value}
                 onChange={onChange}
-                disabled={disabled}
             />
-            {info && <small>{info}</small>}
             {error && <div className="invalid-error">{error}</div>}
         </div>
     );

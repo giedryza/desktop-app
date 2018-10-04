@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TextInput from '../common/TextInput';
+import Button from '../common/Button';
 import { addTvserie } from '../../actions/tvseriesActions';
 
 class AddTvseries extends Component {
     state = {
-        imdbId: '',
-        errors: {}
+        imdbId: ''
     };
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.errors !== this.props.errors) {
-            this.setState({ errors: this.props.errors });
-        }
-    }
 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -22,14 +16,14 @@ class AddTvseries extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const Data = { imdbId: this.state.imdbId };
+        const data = { imdbId: this.state.imdbId };
 
-        this.props.addTvserie(Data);
+        this.props.addTvserie(data);
         this.setState({ imdbId: '' });
     };
 
     render() {
-        const { errors } = this.state;
+        const { errors } = this.props;
 
         return (
             <div>
@@ -43,7 +37,11 @@ class AddTvseries extends Component {
                         error={errors.imdbId}
                     />
 
-                    <input className="button" type="submit" value="Add" />
+                    <Button type="submit" value="Add" />
+                    <small>
+                        * www.imdb.com/title/
+                        <span className="imdb-info">tt6586318</span>/
+                    </small>
                 </form>
             </div>
         );

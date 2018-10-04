@@ -16,7 +16,7 @@ class Tvseries extends Component {
             return <Redirect to="/login" />;
         }
 
-        const { tvseries, loading } = this.props.tvseries;
+        const { tvseries, loading } = this.props.account;
         let tvserieContent;
 
         if (loading) {
@@ -38,7 +38,7 @@ class Tvseries extends Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    tvseries: state.tvseries
+    account: state.account
 });
 
 export default connect(
