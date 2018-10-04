@@ -1,10 +1,12 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import clearErrors from '../utils/clearErrors';
+import { GET_ERRORS, SET_CURRENT_USER, GET_TVSERIES } from './types';
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+    dispatch(clearErrors());
     axios
         .post('/api/users/register', userData)
         .then(res => history.push('/login'))
@@ -18,6 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login User
 export const loginUser = (userData, history) => dispatch => {
+    dispatch(clearErrors());
     axios
         .post('/api/users/login', userData)
         .then(res => {
@@ -26,7 +29,7 @@ export const loginUser = (userData, history) => dispatch => {
             setAuthToken(token);
             const decoded = jwt_decode(token);
             dispatch(setCurrentUser(decoded));
-            history.push('/');
+            history.push('/tvseries');
         })
         .catch(err =>
             dispatch({
@@ -38,6 +41,7 @@ export const loginUser = (userData, history) => dispatch => {
 
 // Logout User
 export const logoutUser = () => dispatch => {
+    dispatch(clearTvseries());
     localStorage.removeItem('jwtToken');
     setAuthToken(false);
     dispatch(setCurrentUser({}));
@@ -51,15 +55,37 @@ export const setCurrentUser = decoded => {
     };
 };
 
-// Add Tvseries
-export const addTvseries = imdbId => dispatch => {
-    axios
-        .post('/api/users/tvseries', imdbId)
-        .then(res => console.log(res.response.imdbId))
-        .catch(err =>
-            dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
-            })
-        );
+// Delete User
+export const deleteUser = () => dispatch => {
+    if (
+        window.confirm(
+            'Are you sure you want to delete your Account? All the information will be lost.'
+        )
+    ) {
+        dispatch(clearTvseries());
+        axios
+            .delete('/api/users')
+            .then(res =>
+                dispatch({
+                    type: SET_CURRENT_USER,
+                    payload: {}
+                })
+            )
+            .catch(err =>
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                })
+            );
+    }
 };
+
+// Clear errors
+const clearTvseries = () => {
+    return {
+        type: GET_TVSERIES,
+        payload: []
+    };
+};
+
+export default clearErrors;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TextInput from '../common/TextInput';
-import { addTvseries } from '../../actions/authActions';
+import { addTvserie } from '../../actions/tvseriesActions';
 
 class AddTvseries extends Component {
     state = {
@@ -10,9 +9,9 @@ class AddTvseries extends Component {
         errors: {}
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.errors) {
-            this.setState({ errors: nextProps });
+    componentDidUpdate(prevProps) {
+        if (prevProps.errors !== this.props.errors) {
+            this.setState({ errors: this.props.errors });
         }
     }
 
@@ -23,9 +22,10 @@ class AddTvseries extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const Data = this.state.imdbId;
+        const Data = { imdbId: this.state.imdbId };
 
-        this.props.addTvseries(Data);
+        this.props.addTvserie(Data);
+        this.setState({ imdbId: '' });
     };
 
     render() {
@@ -33,7 +33,6 @@ class AddTvseries extends Component {
 
         return (
             <div>
-                <h1>Add TvSeries</h1>
                 <form onSubmit={this.onSubmit} noValidate>
                     <TextInput
                         placeholder="tt1234567"
@@ -52,11 +51,10 @@ class AddTvseries extends Component {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth,
     errors: state.errors
 });
 
 export default connect(
     mapStateToProps,
-    { addTvseries }
-)(withRouter(AddTvseries));
+    { addTvserie }
+)(AddTvseries);

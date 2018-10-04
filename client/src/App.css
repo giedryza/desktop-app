@@ -10,49 +10,54 @@ h1 {
 }
 .container {
     max-width: 1000px;
+    padding: 0 0.5rem;
     margin: auto;
     overflow: hidden;
 }
 .container-content {
     max-width: 650px;
-    padding: 0 0.5rem;
     margin: auto;
 }
 .spacer {
     flex: 1;
 }
 
-/* NavBar */
+/* Navbar/Footer */
 
 nav {
-    display: flex;
-    align-items: center;
     border-bottom: 1px solid #000;
 }
-nav ul {
+
+footer {
+    border-top: 1px solid #000;
+    font-size: 75%;
+}
+
+.nav-foot {
+    display: flex;
+    align-items: center;
+}
+.nav-foot ul {
     list-style: none;
     display: flex;
 }
-nav li {
+.nav-foot li {
     padding: 1rem;
 }
-nav a {
+.nav-foot a {
     text-decoration: none;
     color: #000;
 }
-nav a:hover {
+.nav-foot a:hover {
     color: #aaa;
-}
-
-/* Dashboard */
-
-.dashboard {
-    padding: 1rem 0;
 }
 
 /* TvSeries */
 
 .tvseries {
+    margin: 3rem 0;
+}
+.tvserie {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 1rem;
@@ -79,6 +84,19 @@ nav a:hover {
 .content a:hover {
     text-decoration: underline;
 }
+
+/* Form */
+
+form {
+    margin: 1.5rem 0 1.5rem 0;
+}
+form input {
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
 .button {
     cursor: pointer;
     border: none;
@@ -89,24 +107,9 @@ nav a:hover {
 .button:hover {
     background: #ddd;
 }
-
-/* Form */
-
-form {
-    margin: 1.5rem 0;
-}
-form input {
-    width: 100%;
-    display: block;
-    font-size: 1rem;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-}
-
 .invalid-input {
     border: 1px solid #ff0000;
 }
-
 .invalid-error {
     color: #ff0000;
     font-size: 75%;

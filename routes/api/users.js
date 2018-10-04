@@ -73,8 +73,7 @@ router.post('/login', (req, res) => {
                     // User Matched
                     const payload = {
                         id: user.id,
-                        email: user.email,
-                        tvseries: user.tvseries
+                        email: user.email
                     };
 
                     // Sign Token
@@ -124,9 +123,30 @@ router.post(
         User.findOne({ email: req.user.email })
             .then(user => {
                 user.tvseries.unshift(req.body);
-                user.save().then(user => res.json(user));
+                user.save().then(user => res.json(user.tvseries[0]));
             })
             .catch(err => res.status(404).json(err));
+    }
+);
+
+// @route   GET api/users/tvseries
+// @desc    Get all TvSeries
+// @access  Private
+router.get(
+    '/tvseries',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const errors = {};
+
+        User.findOne({ email: req.user.email })
+            .then(user => {
+                if (user.tvseries.length < 1) {
+                    errors.notvseries = 'User has no TvSeries';
+                    return res.status(404).json(errors);
+                }
+                res.json(user.tvseries);
+            })
+            .catch(err => res.status(404).json({ user: 'error' }));
     }
 );
 
@@ -147,7 +167,7 @@ router.delete(
 );
 
 // @route   DELETE api/users
-// @desc    Delete user
+// @desc    Delete User
 // @access  Private
 router.delete(
     '/',

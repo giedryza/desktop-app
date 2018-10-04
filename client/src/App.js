@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import jwt_decode from 'jwt-decode';
+
+import store from './store';
+import PrivateRoute from './components/common/PrivateRoute';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 
-import PrivateRoute from './components/common/PrivateRoute';
-
 import './App.css';
-import store from './store';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import AddTvseries from './components/add-data/AddTvseries';
+import Tvseries from './components/tvseries/Tvseries';
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -35,18 +36,23 @@ class App extends Component {
                         <div className="container">
                             <Navbar />
                             <div className="container-content">
+                                <Route exact path="/" component={Tvseries} />
                                 <Route
                                     exact
                                     path="/register"
                                     component={Register}
                                 />
                                 <Route exact path="/login" component={Login} />
-                                <Route
-                                    exact
-                                    path="/tv-series"
-                                    component={AddTvseries}
-                                />
+
+                                <Switch>
+                                    <PrivateRoute
+                                        exact
+                                        path="/tvseries"
+                                        component={Tvseries}
+                                    />
+                                </Switch>
                             </div>
+                            <Footer />
                         </div>
                     </div>
                 </Router>

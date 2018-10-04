@@ -10,7 +10,7 @@ class Navbar extends Component {
     };
 
     render() {
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
 
         const authLinks = (
             <ul>
@@ -34,10 +34,16 @@ class Navbar extends Component {
         );
 
         return (
-            <nav>
+            <nav className="nav-foot">
                 <div className="nav-left">
                     <ul>
-                        <li>{isAuthenticated ? user.email : 'Desktop App'}</li>
+                        <li>
+                            {isAuthenticated ? (
+                                <Link to="/tvseries">TvSeries</Link>
+                            ) : (
+                                'Desktop App'
+                            )}
+                        </li>
                     </ul>
                 </div>
                 <div className="spacer" />

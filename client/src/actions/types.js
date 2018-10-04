@@ -1,2 +1,10 @@
 export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
+export const TVSERIE_LOADING = 'TVSERIE_LOADING';
+export const GET_TVSERIES = 'GET_TVSERIES';
+export const GET_TVSERIE = 'GET_TVSERIE';
+export const ADD_TVSERIE = 'ADD_TVSERIE';
+export const DELETE_TVSERIE = 'DELETE_TVSERIE';
