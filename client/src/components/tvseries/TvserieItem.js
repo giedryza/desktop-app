@@ -5,7 +5,7 @@ import Button from '../common/Button';
 
 class TvserieItem extends Component {
     state = {
-        apikey: `${process.env.REACT_APP_OMDB_API_KEY}`,
+        apikey: process.env.REACT_APP_OMDB_API_KEY,
         imdb: {}
     };
 
