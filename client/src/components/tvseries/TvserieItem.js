@@ -12,7 +12,7 @@ class TvserieItem extends Component {
     componentDidMount() {
         const { tvserie } = this.props;
         const { apikey } = this.state;
-        fetch(`http://www.omdbapi.com/?i=${tvserie.imdbId}&apikey=${apikey}`)
+        fetch(`https://www.omdbapi.com/?i=${tvserie.imdbId}&apikey=${apikey}`)
             .then(res => res.json())
             .then(data => {
                 this.setState({ imdb: data });
