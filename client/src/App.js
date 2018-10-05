@@ -11,6 +11,7 @@ import { setCurrentUser, logoutUser } from './actions/authActions';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import NotFound from './components/common/NotFound';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Tvseries from './components/tvseries/Tvseries';
@@ -36,13 +37,24 @@ class App extends Component {
                         <div className="container">
                             <Navbar />
                             <div className="container-content">
-                                <Route exact path="/" component={Tvseries} />
-                                <Route
-                                    exact
-                                    path="/register"
-                                    component={Register}
-                                />
-                                <Route exact path="/login" component={Login} />
+                                <Switch>
+                                    <Route
+                                        exact
+                                        path="/"
+                                        component={Tvseries}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/register"
+                                        component={Register}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/login"
+                                        component={Login}
+                                    />
+                                    <Route component={NotFound} />
+                                </Switch>
 
                                 <Switch>
                                     <PrivateRoute

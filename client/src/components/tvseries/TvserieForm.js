@@ -40,7 +40,7 @@ class AddTvseries extends Component {
                     <Button type="submit" value="Add" />
                     <small>
                         * www.imdb.com/title/
-                        <span className="imdb-info">tt1870479</span>/
+                        <span className="imdb-info">tt2543312</span>/
                     </small>
                 </form>
             </div>

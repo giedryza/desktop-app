@@ -72,7 +72,7 @@ footer {
     display: flex;
     flex-direction: column;
 }
-.content p {
+.content div {
     margin-top: 0.5rem;
 }
 .content span {

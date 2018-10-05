@@ -59,7 +59,7 @@ class TvserieItem extends Component {
                     <div>
                         <Button
                             type="button"
-                            value="Delete"
+                            value="Remove"
                             onClick={this.onDeleteClick.bind(this, tvserie._id)}
                         />
                     </div>
