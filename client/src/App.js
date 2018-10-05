@@ -53,15 +53,12 @@ class App extends Component {
                                         path="/login"
                                         component={Login}
                                     />
-                                    <Route component={NotFound} />
-                                </Switch>
-
-                                <Switch>
                                     <PrivateRoute
                                         exact
                                         path="/tvseries"
                                         component={Tvseries}
                                     />
+                                    <Route component={NotFound} />
                                 </Switch>
                             </div>
                             <Footer />
