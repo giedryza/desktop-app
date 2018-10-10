@@ -5,10 +5,10 @@ import clearErrors from '../utils/clearErrors';
 import { GET_ERRORS, SET_CURRENT_USER, GET_TVSERIES } from './types';
 
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = userData => dispatch => {
     axios
         .post('/api/users/register', userData)
-        .then(res => history.push('/login'))
+        .then(res => dispatch(loginUser(userData)))
         .catch(err =>
             dispatch({
                 type: GET_ERRORS,
@@ -18,7 +18,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 // Login User
-export const loginUser = (userData, history) => dispatch => {
+export const loginUser = userData => dispatch => {
     axios
         .post('/api/users/login', userData)
         .then(res => {
@@ -27,7 +27,6 @@ export const loginUser = (userData, history) => dispatch => {
             setAuthToken(token);
             const decoded = jwt_decode(token);
             dispatch(setCurrentUser(decoded));
-            history.push('/tvseries');
         })
         .catch(err =>
             dispatch({
@@ -63,12 +62,7 @@ export const deleteUser = () => dispatch => {
         dispatch(clearTvseries());
         axios
             .delete('/api/users')
-            .then(res =>
-                dispatch({
-                    type: SET_CURRENT_USER,
-                    payload: {}
-                })
-            )
+            .then(res => dispatch(logoutUser()))
             .catch(err =>
                 dispatch({
                     type: GET_ERRORS,

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import jwt_decode from 'jwt-decode';
 
 import store from './store';
-import PrivateRoute from './components/common/PrivateRoute';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 
@@ -52,11 +51,6 @@ class App extends Component {
                                         exact
                                         path="/login"
                                         component={Login}
-                                    />
-                                    <PrivateRoute
-                                        exact
-                                        path="/tvseries"
-                                        component={Tvseries}
                                     />
                                     <Route component={NotFound} />
                                 </Switch>

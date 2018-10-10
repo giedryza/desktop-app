@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
@@ -28,7 +28,7 @@ class Login extends Component {
             password: this.state.password
         };
 
-        this.props.loginUser(userData, this.props.history);
+        this.props.loginUser(userData);
     };
 
     render() {
@@ -75,4 +75,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { loginUser, clearErrors }
-)(withRouter(Login));
+)(Login);

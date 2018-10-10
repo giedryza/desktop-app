@@ -41,7 +41,7 @@ export const getTvseries = () => dispatch => {
         .catch(err =>
             dispatch({
                 type: GET_TVSERIES,
-                payload: null
+                payload: []
             })
         );
 };

@@ -21,7 +21,7 @@ class Tvseries extends Component {
 
         if (loading) {
             tvserieContent = <Spinner />;
-        } else if (tvseries === null) {
+        } else if (tvseries.length === 0) {
             tvserieContent = <h5>No TvSeries</h5>;
         } else {
             tvserieContent = <TvserieFeed tvseries={tvseries} />;

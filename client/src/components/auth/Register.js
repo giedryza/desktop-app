@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import TextInput from '../common/TextInput';
@@ -30,7 +30,7 @@ class Register extends Component {
             password2: this.state.password2
         };
 
-        this.props.registerUser(newUser, this.props.history);
+        this.props.registerUser(newUser);
     };
 
     render() {
@@ -86,4 +86,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { registerUser, clearErrors }
-)(withRouter(Register));
+)(Register);

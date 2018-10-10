@@ -39,7 +39,7 @@ class Navbar extends Component {
                     <ul>
                         <li>
                             {isAuthenticated ? (
-                                <Link to="/tvseries">TvSeries</Link>
+                                <Link to="/">TvSeries</Link>
                             ) : (
                                 'Desktop App'
                             )}
