@@ -14,6 +14,8 @@ import NotFound from './components/common/NotFound';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Tvseries from './components/tvseries/Tvseries';
+import Recipes from './components/recipes/Recipes';
+import RecipeEdit from './components/recipes/RecipeEdit';
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -51,6 +53,16 @@ class App extends Component {
                                         exact
                                         path="/login"
                                         component={Login}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/recipes"
+                                        component={Recipes}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/recipes/:id"
+                                        component={RecipeEdit}
                                     />
                                     <Route component={NotFound} />
                                 </Switch>

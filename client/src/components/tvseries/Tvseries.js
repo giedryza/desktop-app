@@ -4,11 +4,15 @@ import { Redirect } from 'react-router-dom';
 import TvserieForm from './TvserieForm';
 import TvserieFeed from './TvserieFeed';
 import Spinner from '../common/Spinner';
-import { getTvseries } from '../../actions/tvseriesActions';
+import { getTvseries, clearTvseries } from '../../actions/tvseriesActions';
 
 class Tvseries extends Component {
     componentDidMount() {
         this.props.getTvseries();
+    }
+
+    componentWillUnmount() {
+        this.props.clearTvseries();
     }
 
     render() {
@@ -17,8 +21,8 @@ class Tvseries extends Component {
         }
 
         const { tvseries, loading } = this.props.account;
-        let tvserieContent;
 
+        let tvserieContent;
         if (loading) {
             tvserieContent = <Spinner />;
         } else if (tvseries.length === 0) {
@@ -30,7 +34,7 @@ class Tvseries extends Component {
         return (
             <div>
                 <TvserieForm />
-                <div className="tvseries">{tvserieContent}</div>
+                <div className="feed">{tvserieContent}</div>
             </div>
         );
     }
@@ -43,5 +47,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getTvseries }
+    { getTvseries, clearTvseries }
 )(Tvseries);

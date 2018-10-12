@@ -25,42 +25,54 @@ class TvserieItem extends Component {
     }
 
     render() {
-        const { tvserie } = this.props;
-        const { imdb } = this.state;
+        const { imdbId, _id } = this.props.tvserie;
+        const {
+            Poster,
+            Title,
+            Year,
+            Genre,
+            totalSeasons,
+            imdbRating,
+            imdbVotes,
+            imdbPlot
+        } = this.state.imdb;
 
         return (
             <div className="tvserie">
                 <div className="poster">
-                    <img src={imdb.Poster} alt={imdb.Title} />
+                    <a
+                        href={`https://www.imdb.com/title/${imdbId}/`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img src={Poster} alt={Title} />
+                    </a>
                 </div>
                 <div className="content">
                     <h3>
                         <a
-                            href={`https://www.imdb.com/title/${
-                                tvserie.imdbId
-                            }/`}
+                            href={`https://www.imdb.com/title/${imdbId}/`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {imdb.Title}
+                            {Title}
                         </a>
                     </h3>
                     <div>
-                        {imdb.Year} <span>|</span> {imdb.Genre} <span>|</span>{' '}
-                        Seasons: {imdb.totalSeasons}
+                        {Year} <span>|</span> {Genre} <span>|</span> Seasons:{' '}
+                        {totalSeasons}
                     </div>
                     <div>
                         <i className="far fa-star" />{' '}
-                        <strong>{imdb.imdbRating}</strong> <span>|</span>{' '}
-                        {imdb.imdbVotes}
+                        <strong>{imdbRating}</strong> <span>|</span> {imdbVotes}
                     </div>
-                    <div>{imdb.Plot}</div>
+                    <div>{imdbPlot}</div>
                     <div className="spacer" />
                     <div>
                         <Button
                             type="button"
                             value="Remove"
-                            onClick={this.onDeleteClick.bind(this, tvserie._id)}
+                            onClick={this.onDeleteClick.bind(this, _id)}
                         />
                     </div>
                 </div>

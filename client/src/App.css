@@ -8,6 +8,10 @@ h1 {
     padding: 1rem;
     text-align: center;
 }
+a {
+    text-decoration: none;
+    color: #000;
+}
 .container {
     max-width: 1000px;
     padding: 0 0.5rem;
@@ -20,6 +24,9 @@ h1 {
 }
 .spacer {
     flex: 1;
+}
+.feed {
+    margin: 3rem 0;
 }
 
 /* Navbar/Footer */
@@ -45,8 +52,6 @@ footer {
     padding: 1rem;
 }
 .nav-foot a {
-    text-decoration: none;
-    color: #000;
     transition: 0.2s ease-in-out;
 }
 .nav-foot a:hover {
@@ -55,9 +60,6 @@ footer {
 
 /* TvSeries */
 
-.tvseries {
-    margin: 3rem 0;
-}
 .tvserie {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -67,6 +69,10 @@ footer {
 .poster img {
     display: block;
     width: 100%;
+    transition: 0.2s ease-in-out;
+}
+.poster img:hover {
+    filter: grayscale(1);
 }
 .content {
     display: flex;
@@ -91,7 +97,8 @@ footer {
 form {
     margin: 1.5rem 0 1.5rem 0;
 }
-form input {
+form input,
+form textarea {
     width: 100%;
     display: block;
     font-size: 1rem;
@@ -100,9 +107,9 @@ form input {
 }
 .button {
     cursor: pointer;
+    background: #eee;
     border: none;
     padding: 0.5rem 1.5rem;
-    background: #eee;
     margin-top: 4px;
     transition: 0.2s ease-in-out;
 }
@@ -122,4 +129,18 @@ form input {
     border: 1px solid #ff0000;
     padding: 0.25rem;
     margin: 0.25rem;
+}
+
+/* Recipes */
+
+.recipe-title {
+    display: flex;
+    flex-direction: row;
+}
+.recipe-body {
+    padding: 1rem 1.5rem;
+    white-space: pre-line;
+}
+.recipe-button {
+    width: 100%;
 }

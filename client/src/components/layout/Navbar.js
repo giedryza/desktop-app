@@ -12,7 +12,7 @@ class Navbar extends Component {
     render() {
         const { isAuthenticated } = this.props.auth;
 
-        const authLinks = (
+        const authLinksRight = (
             <ul>
                 <li>
                     <a href="/" onClick={this.onLogoutClick}>
@@ -22,7 +22,7 @@ class Navbar extends Component {
             </ul>
         );
 
-        const guestLinks = (
+        const guestLinksRight = (
             <ul>
                 <li>
                     <Link to="/register">Register</Link>
@@ -33,22 +33,31 @@ class Navbar extends Component {
             </ul>
         );
 
+        const authLinksLeft = (
+            <ul>
+                <li>
+                    <Link to="/">TvSeries</Link>
+                </li>
+                <li>
+                    <Link to="/recipes">Recipes</Link>
+                </li>
+            </ul>
+        );
+
+        const guestLinksLeft = (
+            <ul>
+                <li>Desktop App</li>
+            </ul>
+        );
+
         return (
             <nav className="nav-foot">
                 <div className="nav-left">
-                    <ul>
-                        <li>
-                            {isAuthenticated ? (
-                                <Link to="/">TvSeries</Link>
-                            ) : (
-                                'Desktop App'
-                            )}
-                        </li>
-                    </ul>
+                    {isAuthenticated ? authLinksLeft : guestLinksLeft}
                 </div>
                 <div className="spacer" />
                 <div className="nav-right">
-                    {isAuthenticated ? authLinks : guestLinks}
+                    {isAuthenticated ? authLinksRight : guestLinksRight}
                 </div>
             </nav>
         );

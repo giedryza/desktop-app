@@ -1,8 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
-import clearErrors from '../utils/clearErrors';
-import { GET_ERRORS, SET_CURRENT_USER, GET_TVSERIES } from './types';
+import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
 // Register User
 export const registerUser = userData => dispatch => {
@@ -38,7 +37,6 @@ export const loginUser = userData => dispatch => {
 
 // Logout User
 export const logoutUser = () => dispatch => {
-    dispatch(clearTvseries());
     localStorage.removeItem('jwtToken');
     setAuthToken(false);
     dispatch(setCurrentUser({}));
@@ -59,7 +57,6 @@ export const deleteUser = () => dispatch => {
             'Are you sure you want to delete your Account? All the information will be lost.'
         )
     ) {
-        dispatch(clearTvseries());
         axios
             .delete('/api/users')
             .then(res => dispatch(logoutUser()))
@@ -71,13 +68,3 @@ export const deleteUser = () => dispatch => {
             );
     }
 };
-
-// Clear errors
-const clearTvseries = () => {
-    return {
-        type: GET_TVSERIES,
-        payload: []
-    };
-};
-
-export default clearErrors;

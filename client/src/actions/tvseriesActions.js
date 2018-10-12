@@ -1,18 +1,13 @@
 import axios from 'axios';
+import setLoading from '../utils/setLoading';
 import clearErrors from '../utils/clearErrors';
-import {
-    GET_ERRORS,
-    ADD_TVSERIE,
-    GET_TVSERIES,
-    DELETE_TVSERIE,
-    TVSERIE_LOADING
-} from './types';
+import { GET_ERRORS, ADD_TVSERIE, GET_TVSERIES, DELETE_TVSERIE } from './types';
 
 // Add TvSerie
 export const addTvserie = imdbId => dispatch => {
     dispatch(clearErrors());
     axios
-        .post('/api/users/tvseries', imdbId)
+        .post('/api/tvseries', imdbId)
         .then(res =>
             dispatch({
                 type: ADD_TVSERIE,
@@ -29,9 +24,9 @@ export const addTvserie = imdbId => dispatch => {
 
 // Get TvSeries
 export const getTvseries = () => dispatch => {
-    dispatch(setTvserieLoading());
+    dispatch(setLoading());
     axios
-        .get('/api/users/tvseries')
+        .get('/api/tvseries')
         .then(res =>
             dispatch({
                 type: GET_TVSERIES,
@@ -49,7 +44,7 @@ export const getTvseries = () => dispatch => {
 // Delete TvSerie
 export const deleteTvserie = id => dispatch => {
     axios
-        .delete(`/api/users/tvseries/${id}`)
+        .delete(`/api/tvseries/${id}`)
         .then(res =>
             dispatch({
                 type: DELETE_TVSERIE,
@@ -64,9 +59,10 @@ export const deleteTvserie = id => dispatch => {
         );
 };
 
-// Set loading state
-export const setTvserieLoading = () => {
+// Clear Tvseries
+export const clearTvseries = () => {
     return {
-        type: TVSERIE_LOADING
+        type: GET_TVSERIES,
+        payload: []
     };
 };
