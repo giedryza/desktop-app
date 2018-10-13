@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
@@ -33,10 +33,10 @@ class Recipes extends Component {
         }
 
         return (
-            <div>
+            <Fragment>
                 <RecipesForm />
                 <div className="feed">{recipesContent}</div>
-            </div>
+            </Fragment>
         );
     }
 }

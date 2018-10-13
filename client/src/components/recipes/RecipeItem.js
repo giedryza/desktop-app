@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteRecipe } from '../../actions/recipesActions';
@@ -26,7 +26,7 @@ class RecipeItem extends Component {
         ) : null;
 
         return (
-            <div>
+            <Fragment>
                 <div className="recipe-title">
                     <div
                         className="button recipe-button"
@@ -43,7 +43,7 @@ class RecipeItem extends Component {
                     />
                 </div>
                 {recipeBody}
-            </div>
+            </Fragment>
         );
     }
 }

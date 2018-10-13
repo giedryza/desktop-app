@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
@@ -41,7 +41,7 @@ class Register extends Component {
         const { errors } = this.props;
 
         return (
-            <div>
+            <Fragment>
                 <h1>Register</h1>
                 <form onSubmit={this.onSubmit} noValidate>
                     <TextInput
@@ -73,7 +73,7 @@ class Register extends Component {
 
                     <Button type="submit" value="Register" />
                 </form>
-            </div>
+            </Fragment>
         );
     }
 }

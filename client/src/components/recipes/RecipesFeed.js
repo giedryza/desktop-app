@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RecipeItem from './RecipeItem';
 
-class RecipeFeed extends Component {
-    render() {
-        const { recipes } = this.props;
+const RecipesFeed = props => {
+    const { recipes } = props;
 
-        return recipes.map(recipe => (
-            <RecipeItem key={recipe._id} recipe={recipe} />
-        ));
-    }
-}
+    return recipes.map(recipe => (
+        <RecipeItem key={recipe._id} recipe={recipe} />
+    ));
+};
 
-export default RecipeFeed;
+export default RecipesFeed;

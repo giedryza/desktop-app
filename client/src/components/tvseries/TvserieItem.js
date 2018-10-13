@@ -34,7 +34,7 @@ class TvserieItem extends Component {
             totalSeasons,
             imdbRating,
             imdbVotes,
-            imdbPlot
+            Plot
         } = this.state.imdb;
 
         return (
@@ -66,7 +66,7 @@ class TvserieItem extends Component {
                         <i className="far fa-star" />{' '}
                         <strong>{imdbRating}</strong> <span>|</span> {imdbVotes}
                     </div>
-                    <div>{imdbPlot}</div>
+                    <div>{Plot}</div>
                     <div className="spacer" />
                     <div>
                         <Button

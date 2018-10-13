@@ -28,27 +28,25 @@ class AddRecipes extends Component {
         const { errors } = this.props;
 
         return (
-            <div>
-                <form onSubmit={this.onSubmit} noValidate>
-                    <TextInput
-                        placeholder="Title"
-                        type="text"
-                        name="title"
-                        value={this.state.title}
-                        onChange={this.onChange}
-                        error={errors.title}
-                    />
-                    <TextArea
-                        placeholder="Recipe"
-                        name="body"
-                        value={this.state.body}
-                        onChange={this.onChange}
-                        error={errors.body}
-                    />
+            <form onSubmit={this.onSubmit} noValidate>
+                <TextInput
+                    placeholder="Title"
+                    type="text"
+                    name="title"
+                    value={this.state.title}
+                    onChange={this.onChange}
+                    error={errors.title}
+                />
+                <TextArea
+                    placeholder="Recipe"
+                    name="body"
+                    value={this.state.body}
+                    onChange={this.onChange}
+                    error={errors.body}
+                />
 
-                    <Button type="submit" value="Add" />
-                </form>
-            </div>
+                <Button type="submit" value="Add" />
+            </form>
         );
     }
 }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classnames from 'classnames';
 
 const TextInput = ({ name, type, value, placeholder, error, onChange }) => {
     return (
-        <div>
+        <Fragment>
             <input
                 className={classnames('', {
                     'invalid-input': error
@@ -15,7 +15,7 @@ const TextInput = ({ name, type, value, placeholder, error, onChange }) => {
                 onChange={onChange}
             />
             {error && <div className="invalid-error">{error}</div>}
-        </div>
+        </Fragment>
     );
 };
 

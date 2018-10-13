@@ -92,6 +92,20 @@ footer {
     text-decoration: underline;
 }
 
+/* Recipes */
+
+.recipe-title {
+    display: flex;
+    flex-direction: row;
+}
+.recipe-body {
+    padding: 1rem 1.5rem;
+    white-space: pre-line;
+}
+.recipe-button {
+    width: 100%;
+}
+
 /* Form */
 
 form {
@@ -129,18 +143,4 @@ form textarea {
     border: 1px solid #ff0000;
     padding: 0.25rem;
     margin: 0.25rem;
-}
-
-/* Recipes */
-
-.recipe-title {
-    display: flex;
-    flex-direction: row;
-}
-.recipe-body {
-    padding: 1rem 1.5rem;
-    white-space: pre-line;
-}
-.recipe-button {
-    width: 100%;
 }

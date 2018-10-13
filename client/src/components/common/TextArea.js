@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classnames from 'classnames';
 
 const TextArea = ({ name, placeholder, value, error, onChange }) => {
     return (
-        <div className="form-group">
+        <Fragment>
             <textarea
                 className={classnames('', {
                     'invalid-input': error
@@ -15,7 +15,7 @@ const TextArea = ({ name, placeholder, value, error, onChange }) => {
                 onChange={onChange}
             />
             {error && <div className="invalid-error">{error}</div>}
-        </div>
+        </Fragment>
     );
 };
 

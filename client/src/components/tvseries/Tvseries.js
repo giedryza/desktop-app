@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import TvserieForm from './TvserieForm';
@@ -32,10 +32,10 @@ class Tvseries extends Component {
         }
 
         return (
-            <div>
+            <Fragment>
                 <TvserieForm />
                 <div className="feed">{tvserieContent}</div>
-            </div>
+            </Fragment>
         );
     }
 }

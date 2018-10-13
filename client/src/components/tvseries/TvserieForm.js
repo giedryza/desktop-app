@@ -26,24 +26,22 @@ class AddTvseries extends Component {
         const { errors } = this.props;
 
         return (
-            <div>
-                <form onSubmit={this.onSubmit} noValidate>
-                    <TextInput
-                        placeholder="tt1234567"
-                        type="text"
-                        name="imdbId"
-                        value={this.state.imdbId}
-                        onChange={this.onChange}
-                        error={errors.imdbId}
-                    />
+            <form onSubmit={this.onSubmit} noValidate>
+                <TextInput
+                    placeholder="tt1234567"
+                    type="text"
+                    name="imdbId"
+                    value={this.state.imdbId}
+                    onChange={this.onChange}
+                    error={errors.imdbId}
+                />
 
-                    <Button type="submit" value="Add" />
-                    <small>
-                        * www.imdb.com/title/
-                        <span className="imdb-info">tt2543312</span>/
-                    </small>
-                </form>
-            </div>
+                <Button type="submit" value="Add" />
+                <small>
+                    * www.imdb.com/title/
+                    <span className="imdb-info">tt2543312</span>/
+                </small>
+            </form>
         );
     }
 }

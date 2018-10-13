@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TvserieItem from './TvserieItem';
 
-class TvserieFeed extends Component {
-    render() {
-        const { tvseries } = this.props;
+const TvserieFeed = props => {
+    const { tvseries } = props;
 
-        return tvseries.map(tvserie => (
-            <TvserieItem key={tvserie._id} tvserie={tvserie} />
-        ));
-    }
-}
+    return tvseries.map(tvserie => (
+        <TvserieItem key={tvserie._id} tvserie={tvserie} />
+    ));
+};
 
 export default TvserieFeed;
