@@ -1,9 +1,10 @@
 import { SET_LOADING } from '../actions/types';
 
 // Clear errors
-const setLoading = () => {
+const setLoading = bool => {
     return {
-        type: SET_LOADING
+        type: SET_LOADING,
+        payload: bool
     };
 };
 

@@ -11,7 +11,7 @@ import {
 
 // Get Recipes
 export const getRecipes = () => dispatch => {
-    dispatch(setLoading());
+    dispatch(setLoading(true));
     axios
         .get('/api/recipes')
         .then(res =>
@@ -30,7 +30,7 @@ export const getRecipes = () => dispatch => {
 
 // Get Recipe by id
 export const getRecipe = id => dispatch => {
-    dispatch(setLoading());
+    dispatch(setLoading(true));
     axios
         .get(`/api/recipes/${id}`)
         .then(res =>
@@ -39,12 +39,13 @@ export const getRecipe = id => dispatch => {
                 payload: res.data
             })
         )
-        .catch(err =>
+        .catch(err => {
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data
-            })
-        );
+            });
+            dispatch(setLoading(false));
+        });
 };
 
 // Add Recipe

@@ -24,7 +24,7 @@ export const addTvserie = imdbId => dispatch => {
 
 // Get TvSeries
 export const getTvseries = () => dispatch => {
-    dispatch(setLoading());
+    dispatch(setLoading(true));
     axios
         .get('/api/tvseries')
         .then(res =>

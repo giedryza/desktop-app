@@ -23,7 +23,7 @@ class AddTvseries extends Component {
     };
 
     render() {
-        const { errors } = this.props;
+        const { errors, loading } = this.props;
 
         return (
             <form onSubmit={this.onSubmit} noValidate>
@@ -36,7 +36,7 @@ class AddTvseries extends Component {
                     error={errors.imdbId}
                 />
 
-                <Button type="submit" value="Add" />
+                <Button type="submit" value="Add" disabled={loading} />
                 <small>
                     * www.imdb.com/title/
                     <span className="imdb-info">tt2543312</span>/

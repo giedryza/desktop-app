@@ -36,7 +36,7 @@ class Recipes extends Component {
 
         return (
             <Fragment>
-                <RecipesForm />
+                <RecipesForm loading={loading} />
                 <div className="feed">{recipesContent}</div>
             </Fragment>
         );

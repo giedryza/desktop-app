@@ -47,8 +47,9 @@ class EditRecipes extends Component {
 
         const data = { title: this.state.title, body: this.state.body };
         const id = this.props.match.params.id;
+        const history = this.props.history;
 
-        this.props.editRecipe(data, id, this.props.history);
+        this.props.editRecipe(data, id, history);
     };
 
     render() {
@@ -62,7 +63,7 @@ class EditRecipes extends Component {
         let editContent;
         if (loading) {
             editContent = <Spinner />;
-        } else if (!recipe) {
+        } else if (!recipe || errors.message) {
             editContent = <NotFound />;
         } else {
             editContent = (

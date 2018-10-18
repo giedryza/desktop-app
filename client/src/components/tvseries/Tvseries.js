@@ -35,7 +35,7 @@ class Tvseries extends Component {
 
         return (
             <Fragment>
-                <TvserieForm />
+                <TvserieForm loading={loading} />
                 <div className="feed">{tvserieContent}</div>
             </Fragment>
         );
