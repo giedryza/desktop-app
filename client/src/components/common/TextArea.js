@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
-import classnames from 'classnames';
 
 const TextArea = ({ name, placeholder, value, error, onChange }) => {
     return (
         <Fragment>
             <textarea
-                className={classnames('', {
-                    'invalid-input': error
-                })}
+                className={error && 'invalid-input'}
                 rows="6"
                 placeholder={placeholder}
                 name={name}

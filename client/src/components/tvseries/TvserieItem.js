@@ -20,9 +20,9 @@ class TvserieItem extends Component {
             .catch(err => console.log(err));
     }
 
-    onDeleteClick(id) {
+    onDeleteClick = id => () => {
         this.props.deleteTvserie(id);
-    }
+    };
 
     render() {
         const { imdbId, _id } = this.props.tvserie;
@@ -72,7 +72,7 @@ class TvserieItem extends Component {
                         <Button
                             type="button"
                             value="Remove"
-                            onClick={this.onDeleteClick.bind(this, _id)}
+                            onClick={this.onDeleteClick(_id)}
                         />
                     </div>
                 </div>

@@ -144,3 +144,10 @@ form textarea {
     padding: 0.25rem;
     margin: 0.25rem;
 }
+
+/* Spinner */
+
+.spinner {
+    margin: auto;
+    display: block;
+}

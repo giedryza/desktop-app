@@ -14,9 +14,9 @@ class RecipeItem extends Component {
         });
     };
 
-    onDeleteClick(id) {
+    onDeleteClick = id => () => {
         this.props.deleteRecipe(id);
-    }
+    };
 
     render() {
         const { title, body, _id } = this.props.recipe;
@@ -39,7 +39,7 @@ class RecipeItem extends Component {
                     </Link>
                     <i
                         className="far fa-trash-alt button"
-                        onClick={this.onDeleteClick.bind(this, _id)}
+                        onClick={this.onDeleteClick(_id)}
                     />
                 </div>
                 {recipeBody}

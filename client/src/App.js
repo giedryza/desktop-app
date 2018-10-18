@@ -46,16 +46,6 @@ class App extends Component {
                                     />
                                     <Route
                                         exact
-                                        path="/register"
-                                        component={Register}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/login"
-                                        component={Login}
-                                    />
-                                    <Route
-                                        exact
                                         path="/recipes"
                                         component={Recipes}
                                     />
@@ -63,6 +53,16 @@ class App extends Component {
                                         exact
                                         path="/recipes/:id"
                                         component={RecipeEdit}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/register"
+                                        component={Register}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/login"
+                                        component={Login}
                                     />
                                     <Route component={NotFound} />
                                 </Switch>

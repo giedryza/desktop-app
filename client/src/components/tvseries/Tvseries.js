@@ -5,6 +5,7 @@ import TvserieForm from './TvserieForm';
 import TvserieFeed from './TvserieFeed';
 import Spinner from '../common/Spinner';
 import { getTvseries, clearTvseries } from '../../actions/tvseriesActions';
+import clearErrors from '../../utils/clearErrors';
 
 class Tvseries extends Component {
     componentDidMount() {
@@ -13,6 +14,7 @@ class Tvseries extends Component {
 
     componentWillUnmount() {
         this.props.clearTvseries();
+        this.props.clearErrors();
     }
 
     render() {
@@ -47,5 +49,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getTvseries, clearTvseries }
+    { getTvseries, clearTvseries, clearErrors }
 )(Tvseries);

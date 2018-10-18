@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import TextInput from '../common/TextInput';
 import TextArea from '../common/TextArea';
+import Spinner from '../common/Spinner';
+import NotFound from '../common/NotFound';
 import Button from '../common/Button';
 import {
     getRecipe,
@@ -21,10 +23,13 @@ class EditRecipes extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.recipe !== this.state) {
+        if (
+            nextProps.account.recipe &&
+            nextProps.account.recipe !== this.state
+        ) {
             this.setState({
-                title: nextProps.recipe.title,
-                body: nextProps.recipe.body
+                title: nextProps.account.recipe.title,
+                body: nextProps.account.recipe.body
             });
         }
     }
@@ -52,37 +57,46 @@ class EditRecipes extends Component {
         }
 
         const { errors } = this.props;
+        const { loading, recipe } = this.props.account;
 
-        return (
-            <form onSubmit={this.onSubmit} noValidate>
-                <TextInput
-                    placeholder="Title"
-                    type="text"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.onChange}
-                    error={errors.title}
-                />
-                <TextArea
-                    placeholder="Recipe"
-                    name="body"
-                    value={this.state.body}
-                    onChange={this.onChange}
-                    error={errors.body}
-                />
+        let editContent;
+        if (loading) {
+            editContent = <Spinner />;
+        } else if (!recipe) {
+            editContent = <NotFound />;
+        } else {
+            editContent = (
+                <form onSubmit={this.onSubmit} noValidate>
+                    <TextInput
+                        placeholder="Title"
+                        type="text"
+                        name="title"
+                        value={this.state.title}
+                        onChange={this.onChange}
+                        error={errors.title}
+                    />
+                    <TextArea
+                        placeholder="Recipe"
+                        name="body"
+                        value={this.state.body}
+                        onChange={this.onChange}
+                        error={errors.body}
+                    />
+                    <Button type="submit" value="Save" />
+                    <Link to="/recipes">
+                        <Button type="button" value="Cancel" />
+                    </Link>
+                </form>
+            );
+        }
 
-                <Button type="submit" value="Save" />
-                <Link to="/recipes">
-                    <Button type="button" value="Cancel" />
-                </Link>
-            </form>
-        );
+        return <Fragment>{editContent}</Fragment>;
     }
 }
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    recipe: state.account.recipe,
+    account: state.account,
     errors: state.errors
 });
 

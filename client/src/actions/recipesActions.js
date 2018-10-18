@@ -30,6 +30,7 @@ export const getRecipes = () => dispatch => {
 
 // Get Recipe by id
 export const getRecipe = id => dispatch => {
+    dispatch(setLoading());
     axios
         .get(`/api/recipes/${id}`)
         .then(res =>
@@ -40,8 +41,8 @@ export const getRecipe = id => dispatch => {
         )
         .catch(err =>
             dispatch({
-                type: GET_RECIPE,
-                payload: {}
+                type: GET_ERRORS,
+                payload: err.response.data
             })
         );
 };

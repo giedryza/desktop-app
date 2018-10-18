@@ -6,6 +6,7 @@ import Spinner from '../common/Spinner';
 import RecipesForm from './RecipesForm';
 import RecipesFeed from './RecipesFeed';
 import { getRecipes, clearRecipes } from '../../actions/recipesActions';
+import clearErrors from '../../utils/clearErrors';
 
 class Recipes extends Component {
     componentDidMount() {
@@ -14,6 +15,7 @@ class Recipes extends Component {
 
     componentWillUnmount() {
         this.props.clearRecipes();
+        this.props.clearErrors();
     }
 
     render() {
@@ -48,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getRecipes, clearRecipes }
+    { getRecipes, clearRecipes, clearErrors }
 )(Recipes);
