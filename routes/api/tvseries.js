@@ -46,19 +46,6 @@ router.get(
     }
 );
 
-// @route   GET api/tvseries/:id
-// @desc    Get Tvserie by id
-// @access  Private
-router.get(
-    '/:id',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        Tvserie.findOne({ _id: req.params.id })
-            .then(tvseries => res.json(tvseries))
-            .catch(err => res.status(404).json(err));
-    }
-);
-
 // @route   DELETE api/tvseries/:id
 // @desc    Delete Tvserie
 // @access  Private

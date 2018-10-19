@@ -8,7 +8,6 @@ const passport = require('passport');
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-const validateTvseriesInput = require('../../validation/tvseries');
 
 // Load User Model
 const User = require('../../models/User');
@@ -109,58 +108,6 @@ router.get(
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         res.json(req.user);
-    }
-);
-
-// @route   POST api/users/tvseries
-// @desc    Add TvSeries
-// @access  Private
-router.post(
-    '/tvseries',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        const { errors, isValid } = validateTvseriesInput(req.body);
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
-        User.findOne({ email: req.user.email })
-            .then(user => {
-                user.tvseries.unshift(req.body);
-                user.save().then(user => res.json(user.tvseries[0]));
-            })
-            .catch(err => res.status(400).json(err));
-    }
-);
-
-// @route   GET api/users/tvseries
-// @desc    Get all TvSeries
-// @access  Private
-router.get(
-    '/tvseries',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        User.findOne({ email: req.user.email })
-            .then(user => {
-                res.json(user.tvseries);
-            })
-            .catch(err => res.status(400).json(err));
-    }
-);
-
-// @route   DELETE api/users/tvseries/:tv_id
-// @desc    Delete TvSeries
-// @access  Private
-router.delete(
-    '/tvseries/:tv_id',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        User.findOne({ email: req.user.email })
-            .then(user => {
-                user.tvseries.remove({ _id: req.params.tv_id });
-                user.save().then(user => res.json(user));
-            })
-            .catch(err => res.status(404).json(err));
     }
 );
 
