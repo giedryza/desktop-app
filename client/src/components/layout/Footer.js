@@ -18,7 +18,6 @@ class Navbar extends Component {
                         <li>{user.email}</li>
                     </ul>
                 </div>
-                <div className="spacer" />
                 <div className="nav-right">
                     <ul>
                         <li>

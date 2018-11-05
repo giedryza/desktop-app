@@ -55,7 +55,6 @@ class Navbar extends Component {
                 <div className="nav-left">
                     {isAuthenticated ? authLinksLeft : guestLinksLeft}
                 </div>
-                <div className="spacer" />
                 <div className="nav-right">
                     {isAuthenticated ? authLinksRight : guestLinksRight}
                 </div>

@@ -39,7 +39,7 @@ class AddTvseries extends Component {
                 <Button type="submit" value="Add" disabled={loading} />
                 <small>
                     * www.imdb.com/title/
-                    <span className="imdb-info">tt2543312</span>/
+                    <span className="tvserie__info">tt2543312</span>/
                 </small>
             </form>
         );

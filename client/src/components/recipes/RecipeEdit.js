@@ -6,6 +6,7 @@ import TextArea from '../common/TextArea';
 import Spinner from '../common/Spinner';
 import NotFound from '../common/NotFound';
 import Button from '../common/Button';
+import clearErrors from '../../utils/clearErrors';
 import {
     getRecipe,
     editRecipe,
@@ -36,6 +37,7 @@ class EditRecipes extends Component {
 
     componentWillUnmount() {
         this.props.clearRecipe();
+        this.props.clearErrors();
     }
 
     onChange = e => {
@@ -103,5 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { editRecipe, getRecipe, clearRecipe }
+    { editRecipe, getRecipe, clearRecipe, clearErrors }
 )(withRouter(EditRecipes));

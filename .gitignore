@@ -1,4 +1,4 @@
 /node_modules
-/template
+/raw
 package-lock.json
 keys_dev.js

@@ -20,6 +20,20 @@ class TvserieItem extends Component {
             .catch(err => console.log(err));
     }
 
+    // axios
+    //         .get(
+    //             `https://www.omdbapi.com/?i=${tvserie.imdbId}&apikey=${apikey}`,
+    //             {
+    //                 headers: {
+    //                     crossDomain: true,
+    //                     'Content-Type': 'application/x-www-form-urlencoded'
+    //                 }
+    //             }
+    //         )
+
+    //         .then(res => console.log(res.data))
+    //         .catch(err => console.log(err));
+
     onDeleteClick = id => () => {
         this.props.deleteTvserie(id);
     };
@@ -39,42 +53,42 @@ class TvserieItem extends Component {
 
         return (
             <div className="tvserie">
-                <div className="poster">
-                    <a
-                        href={`https://www.imdb.com/title/${imdbId}/`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <img src={Poster} alt={Title} />
-                    </a>
-                </div>
-                <div className="content">
-                    <h3>
-                        <a
-                            href={`https://www.imdb.com/title/${imdbId}/`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {Title}
-                        </a>
-                    </h3>
+                <a
+                    className="tvserie__poster"
+                    href={`https://www.imdb.com/title/${imdbId}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img src={Poster} alt={Title} />
+                </a>
+                <div className="tvserie__content">
                     <div>
-                        {Year} <span>|</span> {Genre} <span>|</span> Seasons:{' '}
-                        {totalSeasons}
+                        <h3>
+                            <a
+                                href={`https://www.imdb.com/title/${imdbId}/`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {Title}
+                            </a>
+                        </h3>
+                        <div>
+                            {Year} <span>|</span> {Genre} <span>|</span>{' '}
+                            Seasons: {totalSeasons}
+                        </div>
+                        <div>
+                            <i className="far fa-star" />{' '}
+                            <strong>{imdbRating}</strong> <span>|</span>{' '}
+                            {imdbVotes}
+                        </div>
+                        <div>{Plot}</div>
                     </div>
-                    <div>
-                        <i className="far fa-star" />{' '}
-                        <strong>{imdbRating}</strong> <span>|</span> {imdbVotes}
-                    </div>
-                    <div>{Plot}</div>
-                    <div className="spacer" />
-                    <div>
-                        <Button
-                            type="button"
-                            value="Remove"
-                            onClick={this.onDeleteClick(_id)}
-                        />
-                    </div>
+
+                    <Button
+                        type="button"
+                        value="Remove"
+                        onClick={this.onDeleteClick(_id)}
+                    />
                 </div>
             </div>
         );

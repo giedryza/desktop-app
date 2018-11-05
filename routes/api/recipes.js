@@ -5,7 +5,7 @@ const passport = require('passport');
 // Load Input Validation
 const validateRecipesInput = require('../../validation/recipes');
 
-// Load User Model
+// Load Recipe Model
 const Recipe = require('../../models/Recipe');
 
 // @route   POST api/recipes

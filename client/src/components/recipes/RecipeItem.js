@@ -22,14 +22,14 @@ class RecipeItem extends Component {
         const { title, body, _id } = this.props.recipe;
 
         const recipeBody = this.state.showRecipe ? (
-            <div className="recipe-body">{body}</div>
+            <div className="recipe__body">{body}</div>
         ) : null;
 
         return (
             <Fragment>
-                <div className="recipe-title">
+                <div className="recipe__title">
                     <div
-                        className="button recipe-button"
+                        className="button recipe__button"
                         onClick={this.toggleShowRecipe}
                     >
                         <h4>{title}</h4>
