@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import jwt_decode from 'jwt-decode';
+import './App.css';
 
 import store from './store';
-import setAuthToken from './utils/setAuthToken';
+import { setAuthToken } from './utils/helperActions';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 
-import './App.css';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import NotFound from './components/common/NotFound';
-import Register from './components/auth/Register';
+import Layout from './components/layout/Layout';
 import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import Tvseries from './components/tvseries/Tvseries';
 import Recipes from './components/recipes/Recipes';
 import RecipeEdit from './components/recipes/RecipeEdit';
+import NotFound from './components/common/NotFound';
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -25,55 +24,25 @@ if (localStorage.jwtToken) {
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
         store.dispatch(logoutUser());
-        window.location.href = '/login';
+        window.location.href = '/';
     }
 }
 
-class App extends Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <Router>
-                    <div className="App">
-                        <div className="container">
-                            <Navbar />
-                            <div className="container-content">
-                                <Switch>
-                                    <Route
-                                        exact
-                                        path="/"
-                                        component={Tvseries}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/recipes"
-                                        component={Recipes}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/recipes/:id"
-                                        component={RecipeEdit}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/register"
-                                        component={Register}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/login"
-                                        component={Login}
-                                    />
-                                    <Route component={NotFound} />
-                                </Switch>
-                            </div>
-                            <Footer />
-                        </div>
-                    </div>
-                </Router>
-            </Provider>
-        );
-    }
-}
+const App = () => (
+    <Provider store={store}>
+        <BrowserRouter>
+            <Layout>
+                <Switch>
+                    <Route path="/tvseries" exact component={Tvseries} />
+                    <Route path="/recipes/:id" exact component={RecipeEdit} />
+                    <Route path="/recipes" exact component={Recipes} />
+                    <Route path="/register" exact component={Register} />
+                    <Route path="/" exact component={Login} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Layout>
+        </BrowserRouter>
+    </Provider>
+);
 
 export default App;

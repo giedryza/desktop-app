@@ -1,73 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/authActions';
 
-class Navbar extends Component {
-    onLogoutClick = e => {
-        e.preventDefault();
-        this.props.logoutUser();
+const Navbar = ({ links, isAuthenticated, onLogoutClick }) => {
+    const renderLinks = position => {
+        let showLinks = [];
+        links.forEach(item => {
+            if (item.position === position && item.auth === isAuthenticated)
+                showLinks.push(item);
+        });
+
+        return showLinks.map(link => (
+            <li key={link.label}>
+                <Link
+                    to={link.linkto}
+                    onClick={link.label === 'Logout' ? onLogoutClick : null}
+                >
+                    {link.label}
+                </Link>
+            </li>
+        ));
     };
 
-    render() {
-        const { isAuthenticated } = this.props.auth;
+    return (
+        <nav className="nav-foot">
+            <div className="nav-left">
+                <ul>{renderLinks('left')}</ul>
+            </div>
+            <div className="nav-right">
+                <ul>{renderLinks('right')}</ul>
+            </div>
+        </nav>
+    );
+};
 
-        const authLinksRight = (
-            <ul>
-                <li>
-                    <a href="/" onClick={this.onLogoutClick}>
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        );
-
-        const guestLinksRight = (
-            <ul>
-                <li>
-                    <Link to="/register">Register</Link>
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
-        );
-
-        const authLinksLeft = (
-            <ul>
-                <li>
-                    <Link to="/">TvSeries</Link>
-                </li>
-                <li>
-                    <Link to="/recipes">Recipes</Link>
-                </li>
-            </ul>
-        );
-
-        const guestLinksLeft = (
-            <ul>
-                <li>Desktop App</li>
-            </ul>
-        );
-
-        return (
-            <nav className="nav-foot">
-                <div className="nav-left">
-                    {isAuthenticated ? authLinksLeft : guestLinksLeft}
-                </div>
-                <div className="nav-right">
-                    {isAuthenticated ? authLinksRight : guestLinksRight}
-                </div>
-            </nav>
-        );
-    }
-}
-
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(
-    mapStateToProps,
-    { logoutUser }
-)(Navbar);
+export default Navbar;

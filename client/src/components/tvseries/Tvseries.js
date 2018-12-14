@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import TvserieForm from './TvserieForm';
-import TvserieFeed from './TvserieFeed';
-import Spinner from '../common/Spinner';
+import { connect } from 'react-redux';
 import { getTvseries, clearTvseries } from '../../actions/tvseriesActions';
-import clearErrors from '../../utils/clearErrors';
+import { clearErrors } from '../../utils/helperActions';
+
+import Spinner from '../common/Spinner';
+import TvseriesForm from './TvseriesForm';
+import TvseriesFeed from './TvseriesFeed';
 
 class Tvseries extends Component {
     componentDidMount() {
@@ -13,30 +14,25 @@ class Tvseries extends Component {
     }
 
     componentWillUnmount() {
-        this.props.clearTvseries();
         this.props.clearErrors();
+        this.props.clearTvseries();
     }
 
+    renderTvseries = ({ tvseries, loading }) => {
+        if (loading) return <Spinner />;
+        else if (tvseries.length === 0) return <h5>No TvSeries</h5>;
+        else return <TvseriesFeed tvseries={tvseries} />;
+    };
+
     render() {
-        if (!this.props.auth.isAuthenticated) {
-            return <Redirect to="/login" />;
-        }
-
-        const { tvseries, loading } = this.props.account;
-
-        let tvserieContent;
-        if (loading) {
-            tvserieContent = <Spinner />;
-        } else if (tvseries.length === 0) {
-            tvserieContent = <h5>No TvSeries</h5>;
-        } else {
-            tvserieContent = <TvserieFeed tvseries={tvseries} />;
-        }
+        if (!this.props.auth.isAuthenticated) return <Redirect to="/" />;
 
         return (
             <Fragment>
-                <TvserieForm loading={loading} />
-                <div className="feed">{tvserieContent}</div>
+                <TvseriesForm disabled={this.props.account.loading} />
+                <div className="feed">
+                    {this.renderTvseries(this.props.account)}
+                </div>
             </Fragment>
         );
     }
@@ -49,5 +45,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getTvseries, clearTvseries, clearErrors }
+    { getTvseries, clearErrors, clearTvseries }
 )(Tvseries);

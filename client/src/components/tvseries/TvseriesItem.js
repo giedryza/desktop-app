@@ -1,38 +1,24 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deleteTvserie } from '../../actions/tvseriesActions';
 import Button from '../common/Button';
 
-class TvserieItem extends Component {
+class TvseriesItem extends Component {
     state = {
-        apikey: process.env.REACT_APP_OMDB_API_KEY,
         imdb: {}
     };
 
     componentDidMount() {
-        const { tvserie } = this.props;
-        const { apikey } = this.state;
-        fetch(`https://www.omdbapi.com/?i=${tvserie.imdbId}&apikey=${apikey}`)
+        const { imdbId } = this.props.tvserie;
+        const apikey = process.env.REACT_APP_OMDB_API_KEY;
+        fetch(`https://www.omdbapi.com/?i=${imdbId}&apikey=${apikey}`)
             .then(res => res.json())
             .then(data => {
                 this.setState({ imdb: data });
             })
             .catch(err => console.log(err));
     }
-
-    // axios
-    //         .get(
-    //             `https://www.omdbapi.com/?i=${tvserie.imdbId}&apikey=${apikey}`,
-    //             {
-    //                 headers: {
-    //                     crossDomain: true,
-    //                     'Content-Type': 'application/x-www-form-urlencoded'
-    //                 }
-    //             }
-    //         )
-
-    //         .then(res => console.log(res.data))
-    //         .catch(err => console.log(err));
 
     onDeleteClick = id => () => {
         this.props.deleteTvserie(id);
@@ -53,24 +39,22 @@ class TvserieItem extends Component {
 
         return (
             <div className="tvserie">
-                <a
+                <Link
+                    to={`//www.imdb.com/title/${imdbId}/`}
                     className="tvserie__poster"
-                    href={`https://www.imdb.com/title/${imdbId}/`}
                     target="_blank"
-                    rel="noopener noreferrer"
                 >
                     <img src={Poster} alt={Title} />
-                </a>
+                </Link>
                 <div className="tvserie__content">
                     <div>
                         <h3>
-                            <a
-                                href={`https://www.imdb.com/title/${imdbId}/`}
+                            <Link
+                                to={`//www.imdb.com/title/${imdbId}/`}
                                 target="_blank"
-                                rel="noopener noreferrer"
                             >
                                 {Title}
-                            </a>
+                            </Link>
                         </h3>
                         <div>
                             {Year} <span>|</span> {Genre} <span>|</span>{' '}
@@ -98,4 +82,4 @@ class TvserieItem extends Component {
 export default connect(
     null,
     { deleteTvserie }
-)(TvserieItem);
+)(TvseriesItem);

@@ -11,9 +11,9 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 if (
     isDevelopment &&
     typeof window !== 'undefined' &&
-    window.devToolsExtension
+    window.__REDUX_DEVTOOLS_EXTENSION__
 ) {
-    enhancers.push(window.devToolsExtension());
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 
 const store = createStore(

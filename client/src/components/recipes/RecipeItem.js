@@ -14,16 +14,17 @@ class RecipeItem extends Component {
         });
     };
 
+    showRecipe = body =>
+        this.state.showRecipe ? (
+            <div className="recipe__body">{body}</div>
+        ) : null;
+
     onDeleteClick = id => () => {
         this.props.deleteRecipe(id);
     };
 
     render() {
         const { title, body, _id } = this.props.recipe;
-
-        const recipeBody = this.state.showRecipe ? (
-            <div className="recipe__body">{body}</div>
-        ) : null;
 
         return (
             <Fragment>
@@ -42,7 +43,7 @@ class RecipeItem extends Component {
                         onClick={this.onDeleteClick(_id)}
                     />
                 </div>
-                {recipeBody}
+                {this.showRecipe(body)}
             </Fragment>
         );
     }

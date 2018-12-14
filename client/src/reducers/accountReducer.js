@@ -12,7 +12,6 @@ import {
 const initialState = {
     tvseries: [],
     recipes: [],
-    recipe: {},
     loading: false
 };
 

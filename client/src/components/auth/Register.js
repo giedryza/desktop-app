@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
+import { clearErrors } from '../../utils/helperActions';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
-import clearErrors from '../../utils/clearErrors';
 
 class Register extends Component {
     state = {
@@ -34,46 +34,40 @@ class Register extends Component {
     };
 
     render() {
-        if (this.props.auth.isAuthenticated) {
-            return <Redirect to="/" />;
-        }
-
-        const { errors } = this.props;
+        if (this.props.auth.isAuthenticated) return <Redirect to="/" />;
 
         return (
-            <Fragment>
+            <form onSubmit={this.onSubmit} noValidate>
                 <h1>Register</h1>
-                <form onSubmit={this.onSubmit} noValidate>
-                    <TextInput
-                        placeholder="john@gmail.com"
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        error={errors.email}
-                    />
+                <TextInput
+                    placeholder="john@gmail.com"
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={this.props.errors.email}
+                />
 
-                    <TextInput
-                        placeholder="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        error={errors.password}
-                    />
+                <TextInput
+                    placeholder="password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    error={this.props.errors.password}
+                />
 
-                    <TextInput
-                        placeholder="confirm password"
-                        type="password"
-                        name="password2"
-                        value={this.state.password2}
-                        onChange={this.onChange}
-                        error={errors.password2}
-                    />
+                <TextInput
+                    placeholder="confirm password"
+                    type="password"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                    error={this.props.errors.password2}
+                />
 
-                    <Button type="submit" value="Register" />
-                </form>
-            </Fragment>
+                <Button type="submit" value="Register" />
+            </form>
         );
     }
 }

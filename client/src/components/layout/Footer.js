@@ -1,44 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { deleteUser } from '../../actions/authActions';
+import React from 'react';
 
-class Navbar extends Component {
-    onDeleteClick = e => {
-        e.preventDefault();
-        this.props.deleteUser();
-    };
+const Footer = ({ user, isAuthenticated, onDeleteClick }) => {
+    const footer = (
+        <footer className="nav-foot">
+            <div className="foot-left">{user.email}</div>
+            <div className="foot-right " onClick={onDeleteClick}>
+                Delete Account
+            </div>
+        </footer>
+    );
 
-    render() {
-        const { isAuthenticated, user } = this.props.auth;
+    return isAuthenticated ? footer : null;
+};
 
-        const footer = (
-            <footer className="nav-foot">
-                <div className="nav-left">
-                    <ul>
-                        <li>{user.email}</li>
-                    </ul>
-                </div>
-                <div className="nav-right">
-                    <ul>
-                        <li>
-                            <a href="/" onClick={this.onDeleteClick}>
-                                Delete Account
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </footer>
-        );
-
-        return isAuthenticated ? footer : null;
-    }
-}
-
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(
-    mapStateToProps,
-    { deleteUser }
-)(Navbar);
+export default Footer;

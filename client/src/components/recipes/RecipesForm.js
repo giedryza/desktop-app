@@ -25,7 +25,7 @@ class AddRecipes extends Component {
     };
 
     render() {
-        const { errors, loading } = this.props;
+        const { errors, disabled } = this.props;
 
         return (
             <form onSubmit={this.onSubmit} noValidate>
@@ -45,7 +45,7 @@ class AddRecipes extends Component {
                     error={errors.body}
                 />
 
-                <Button type="submit" value="Add" disabled={loading} />
+                <Button type="submit" value="Add" disabled={disabled} />
             </form>
         );
     }

@@ -5,6 +5,9 @@
     --color-error: #ff0000;
 
     --transition: 0.2s ease-in-out;
+
+    --font-default: 1rem;
+    --font-small: 0.75rem;
 }
 
 * {
@@ -43,12 +46,10 @@ a {
 nav {
     border-bottom: 1px solid #000;
 }
-
 footer {
     border-top: 1px solid #000;
-    font-size: 75%;
+    font-size: var(--font-small);
 }
-
 .nav-foot {
     display: flex;
     justify-content: space-between;
@@ -64,6 +65,17 @@ footer {
     transition: var(--transition);
 }
 .nav-foot a:hover {
+    color: var(--color-grey);
+}
+.foot-left,
+.foot-right {
+    padding: 1rem;
+}
+.foot-right {
+    cursor: pointer;
+    transition: var(--transition);
+}
+.foot-right:hover {
     color: var(--color-grey);
 }
 
@@ -94,7 +106,6 @@ footer {
     color: var(--color-grey);
 }
 .tvserie__content a {
-    text-decoration: none;
     color: #000;
 }
 .tvserie__content a:hover {
@@ -132,7 +143,7 @@ form input,
 form textarea {
     width: 100%;
     display: block;
-    font-size: 1rem;
+    font-size: var(--font-default);
     padding: 0.5rem;
     margin: 0.5rem 0;
 }
@@ -152,7 +163,7 @@ form textarea {
 }
 .invalid-error {
     color: var(--color-error);
-    font-size: 0.75rem;
+    font-size: var(--font-small);
     margin-top: -0.25rem;
     margin-bottom: 1rem;
 }

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import setLoading from '../utils/setLoading';
-import clearErrors from '../utils/clearErrors';
+import { setLoading, clearErrors } from '../utils/helperActions';
 import {
     GET_ERRORS,
     GET_RECIPES,
@@ -42,7 +41,7 @@ export const getRecipe = id => dispatch => {
         .catch(err => {
             dispatch({
                 type: GET_ERRORS,
-                payload: err.response.data
+                payload: err.response
             });
             dispatch(setLoading(false));
         });

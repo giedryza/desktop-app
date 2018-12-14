@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addTvserie } from '../../actions/tvseriesActions';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
-import { addTvserie } from '../../actions/tvseriesActions';
 
-class AddTvseries extends Component {
+class TvseriesForm extends Component {
     state = {
         imdbId: ''
     };
@@ -17,13 +17,12 @@ class AddTvseries extends Component {
         e.preventDefault();
 
         const data = { imdbId: this.state.imdbId };
-
         this.props.addTvserie(data);
         this.setState({ imdbId: '' });
     };
 
     render() {
-        const { errors, loading } = this.props;
+        const { errors, disabled } = this.props;
 
         return (
             <form onSubmit={this.onSubmit} noValidate>
@@ -36,7 +35,7 @@ class AddTvseries extends Component {
                     error={errors.imdbId}
                 />
 
-                <Button type="submit" value="Add" disabled={loading} />
+                <Button type="submit" value="Add" disabled={disabled} />
                 <small>
                     * www.imdb.com/title/
                     <span className="tvserie__info">tt2543312</span>/
@@ -53,4 +52,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { addTvserie }
-)(AddTvseries);
+)(TvseriesForm);

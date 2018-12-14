@@ -1,6 +1,5 @@
 import axios from 'axios';
-import setLoading from '../utils/setLoading';
-import clearErrors from '../utils/clearErrors';
+import { setLoading, clearErrors } from '../utils/helperActions';
 import { GET_ERRORS, ADD_TVSERIE, GET_TVSERIES, DELETE_TVSERIE } from './types';
 
 // Add TvSerie
